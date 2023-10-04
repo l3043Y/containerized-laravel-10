@@ -6,8 +6,8 @@ WORKDIR /var/www
 
 COPY . /var/www
 
-RUN mv /etc/nginx.conf /etc/nginx.conf.bak
-RUN mv /var/www/docker/nginx.conf /etc/nginx.conf
+RUN mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
+RUN mv /var/www/docker/nginx.conf /etc/nginx/nginx.conf
 
 RUN composer install --no-interaction --optimize-autoloader --no-dev \
   && php artisan config:cache \

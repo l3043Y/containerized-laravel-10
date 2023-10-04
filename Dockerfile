@@ -1,5 +1,7 @@
 FROM serversideup/php:8.2-fpm-nginx
 
+ENV SSL_MODE=off
+
 WORKDIR /var/www
 
 COPY . /var/www

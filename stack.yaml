@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  php:
+    image: registry.gitlab.com/smartaxiatakh/devops/foundation/containerized-laravel-10:f513fab5
+    environment:
+      SSL_MODE: "off"
+    ports:
+      - "8000:80"
+    volumes:
+      - ./.env:/var/www/html/.env

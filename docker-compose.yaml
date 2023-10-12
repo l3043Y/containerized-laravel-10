@@ -17,13 +17,12 @@ services:
       context: .
       dockerfile: horizon.dockerfile
     command: ["su", "webuser", "-c", "php artisan horizon"]
-    ports:
-      - "8001:80"
-    volumes:
-      - .:/var/www/html
     environment:
       SSL_MODE: "off"
       PHP_POOL_NAME: "my-app_horizon"
+    deploy:
+      replicas: 3
+
 
   redis:
     image: redis:alpine

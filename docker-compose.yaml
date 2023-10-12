@@ -1,12 +1,31 @@
 version: '3.8'
 services:
-  php:
+  laravel-10:
     build:
       context: .
       dockerfile: Dockerfile
     environment:
       SSL_MODE: "off"
+      PHP_POOL_NAME: "my-app_horizon"
     ports:
       - "8000:80"
-    # volumes:
-    #   - .:/var/www/html
+    volumes:
+      - .:/var/www/html
+
+  laravel-horizon:
+    build:
+      context: .
+      dockerfile: horizon.dockerfile
+    command: ["su", "webuser", "-c", "php artisan horizon"]
+    ports:
+      - "8001:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      SSL_MODE: "off"
+      PHP_POOL_NAME: "my-app_horizon"
+
+  redis:
+    image: redis:alpine
+    command: "redis-server --appendonly yes --requirepass redispassword"
+

@@ -12,4 +12,4 @@ RUN composer install --no-interaction --optimize-autoloader --no-dev
 RUN chown -R webuser:webgroup /var/www/html
 
 
-# CMD ["/init"]
+CMD ["su", "webuser", "-c", "php artisan horizon"]

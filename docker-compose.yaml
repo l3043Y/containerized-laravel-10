@@ -15,14 +15,13 @@ services:
   laravel-horizon:
     build:
       context: .
-      dockerfile: horizon.dockerfile
+      dockerfile: Dockerfile
     command: ["su", "webuser", "-c", "php artisan horizon"]
     environment:
       SSL_MODE: "off"
       PHP_POOL_NAME: "my-app_horizon"
     deploy:
       replicas: 3
-
 
   redis:
     image: redis:alpine
